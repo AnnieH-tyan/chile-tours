@@ -1,13 +1,29 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
+import {Link, Route, Routes} from "react-router";
+import {Landing} from "./pages/Landing";
+import {Cart} from "./pages/Cart";
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
     <>
+      <nav>
+        <ul>
+          <li>
+            <Link to="/" role="menuitem">
+              Home
+            </Link>
+          </li>
+          <li>
+            <Link to="/cart" role="menuitem">
+              Cart
+            </Link>
+          </li>
+        </ul>
+      </nav>
+      <Routes>
+        <Route path="/" element={<Landing />} />
+        <Route path="/cart" element={<Cart />} />
+      </Routes>
     </>
   )
 }
