@@ -2,6 +2,7 @@ import './App.css'
 import {Link, Route, Routes} from "react-router";
 import {Landing} from "./pages/Landing";
 import {Cart} from "./pages/Cart";
+import {TourList} from "./pages/TourList";
 
 function App() {
   const navItem = 'flex items-center h-full !text-white hover:bg-blue-700 px-4 py-2 transition-colors'
@@ -23,7 +24,7 @@ function App() {
         </ul>
       </nav>
       <Routes>
-        <Route path="/" element={<Landing />} />
+        <Route path="/" element={<TourList />} />
         <Route path="/cart" element={<Cart />} />
       </Routes>
     </>
