@@ -4,17 +4,19 @@ import {Landing} from "./pages/Landing";
 import {Cart} from "./pages/Cart";
 
 function App() {
+  const navItem = 'flex items-center h-full !text-white hover:bg-blue-700 px-4 py-2 transition-colors'
+
   return (
     <>
-      <nav>
-        <ul>
-          <li>
-            <Link to="/" role="menuitem">
+      <nav className="bg-blue-600 shadow-md mb-[40px]">
+        <ul className="flex items-center h-14 gap-6 list-none px-6 mx-auto max-w-7xl">
+          <li className="h-full">
+            <Link to="/" role="menuitem" className={navItem}>
               Home
             </Link>
           </li>
-          <li>
-            <Link to="/cart" role="menuitem">
+          <li className="h-full">
+            <Link to="/cart" role="menuitem" className={navItem}>
               Cart
             </Link>
           </li>
