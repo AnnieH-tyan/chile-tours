@@ -1,6 +1,14 @@
 import { Card } from "../components/Card";
+import { useCartStore } from "../store/store";
 
-const tours = [
+export interface Tour {
+  id: number;
+  name: string;
+  location: string;
+  imgPath: string;
+}
+
+export const tours: Tour[] = [
   {
     id: 1,
     name: "Atacama Stargazing",
@@ -22,16 +30,13 @@ const tours = [
 ];
 
 export const TourList = () => {
+  const addToCart = useCartStore((state) => state.addToCart);
+
   return tours.map((tour) => (
-    <Card key={tour.id}>
-      <img
-        src={`/assets/${tour.imgPath}`}
-        width="300px"
-        height="200px"
-        alt={tour.name}
-      />
-      <h2>{tour.name}</h2>
-      <p>{tour.location}</p>
-    </Card>
+    <Card
+      tour={tour}
+      btnText="Add to cart"
+      btnFunction={() => addToCart(tour.id)}
+    />
   ));
 };
