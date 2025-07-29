@@ -10,14 +10,17 @@ export const Cart = () => {
 
   return (
     <>
-      <h1>Cart</h1>
-      {products.map((tour) => (
-        <Card
-          tour={tour}
-          btnText="Remove from cart"
-          btnFunction={() => removeFromCart(tour.id)}
-        />
-      ))}
+      {products.length ? (
+        products.map((tour) => (
+          <Card
+            tour={tour}
+            btnText="Remove from cart"
+            btnFunction={() => removeFromCart(tour.id)}
+          />
+        ))
+      ) : (
+        <h1>Cart is empty!</h1>
+      )}
     </>
   );
 };

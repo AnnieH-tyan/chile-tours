@@ -32,11 +32,15 @@ export const tours: Tour[] = [
 export const TourList = () => {
   const addToCart = useCartStore((state) => state.addToCart);
 
-  return tours.map((tour) => (
-    <Card
-      tour={tour}
-      btnText="Add to cart"
-      btnFunction={() => addToCart(tour.id)}
-    />
-  ));
+  return (
+    <div className="flex gap-[10px] justify-center">
+      {tours.map((tour) => (
+        <Card
+          tour={tour}
+          btnText="Add to cart"
+          btnFunction={() => addToCart(tour.id)}
+        />
+      ))}
+    </div>
+  );
 };
