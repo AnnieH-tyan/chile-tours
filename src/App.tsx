@@ -1,8 +1,8 @@
 import "./App.css";
 import { Link, Route, Routes } from "react-router";
-import { Landing } from "./pages/Landing";
 import { Cart } from "./pages/Cart";
 import { TourList } from "./pages/TourList";
+import { TourInfo } from "./pages/TourInfo";
 
 function App() {
   const navItem =
@@ -27,6 +27,7 @@ function App() {
       <Routes>
         <Route path="/" element={<TourList />} />
         <Route path="/cart" element={<Cart />} />
+        <Route path="/tour/:id" element={<TourInfo />} />
       </Routes>
     </>
   );

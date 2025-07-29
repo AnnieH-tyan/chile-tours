@@ -1,3 +1,4 @@
+import { Link } from "react-router";
 import type { Tour } from "../pages/TourList";
 
 export const Card: React.FC<{
@@ -14,6 +15,15 @@ export const Card: React.FC<{
     />
     <h2>{tour.name}</h2>
     <p>{tour.location}</p>
-    <button onClick={btnFunction}>{btnText}</button>
+
+    <div className="flex justify-between justify-between">
+      <button onClick={btnFunction}>{btnText}</button>
+      <Link
+        className="bg-slate-200 hover:bg-slate-300 px-4 py-2 rounded transition-colors"
+        to={`/tour/${tour.id}`}
+      >
+        Details
+      </Link>
+    </div>
   </div>
 );
