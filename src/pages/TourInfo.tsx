@@ -1,9 +1,10 @@
-import { useParams } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import { tours, type Tour } from "./TourList";
 import { useCartStore } from "../store/store";
 
 export const TourInfo = () => {
   const { id } = useParams();
+  const navigate = useNavigate();
 
   const tour: Tour | undefined = tours.find((tour) => tour.id === Number(id));
   const addToCart = useCartStore((state) => state.addToCart);
@@ -14,11 +15,17 @@ export const TourInfo = () => {
 
   return (
     <>
-      <h1>{name}</h1>
+      <button className="mt-5" onClick={() => navigate(-1)}>
+        Back
+      </button>
+
+      <h1 className="mb-5">{name}</h1>
       <p>{description}</p>
       <div>{price}</div>
 
-      <button onClick={() => addToCart(tourId)}>Add to cart</button>
+      <button className="mt-5" onClick={() => addToCart(tourId)}>
+        Add to cart
+      </button>
     </>
   );
 };
