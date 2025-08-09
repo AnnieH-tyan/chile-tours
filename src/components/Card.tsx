@@ -1,5 +1,5 @@
 import { Link } from "react-router";
-import type { Tour } from "../pages/TourList";
+import type {Tour} from '../api/tours'
 
 export const Card: React.FC<{
   tour: Tour;
