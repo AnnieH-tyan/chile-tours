@@ -1,12 +1,15 @@
 import { Card } from "../components/Card";
 import { useCartStore } from "../store/store";
-import { tours } from "./TourList";
+import {useMemo} from "react";
 
 export const Cart = () => {
   const productIDs = useCartStore((state) => state.toursInCart);
-  const products = tours.filter((tour) => productIDs.includes(tour.id));
-
   const removeFromCart = useCartStore((state) => state.removeFromCart);
+
+  const tours = []
+  const products = useMemo(() =>
+      tours.filter((tour) => productIDs.includes(tour.id)),
+      [tours, productIDs])
 
   return (
     <>
