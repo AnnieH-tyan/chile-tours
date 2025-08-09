@@ -1,10 +1,11 @@
 import { useNavigate, useParams } from "react-router";
-import { tours, type Tour } from "./TourList";
 import { useCartStore } from "../store/store";
+import type {Tour} from "../api/tours";
 
 export const TourInfo = () => {
   const { id } = useParams();
   const navigate = useNavigate();
+  const tours = []
 
   const tour: Tour | undefined = tours.find((tour) => tour.id === Number(id));
   const addToCart = useCartStore((state) => state.addToCart);
