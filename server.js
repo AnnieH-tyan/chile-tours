@@ -1,14 +1,17 @@
 /** Simple mock server */
 
 import express from "express";
-import cors from 'cors'
+import cors from "cors";
 
 const app = express();
 const port = 3000;
 
-app.use(cors({
-  origin: 'http://localhost:5173'
-}))
+app.use(express.json());
+app.use(
+  cors({
+    origin: "http://localhost:5173",
+  })
+);
 
 export const tours = [
   {
@@ -42,6 +45,13 @@ export const tours = [
 
 app.get("/api/v1/tours", (req, res) => {
   res.json(tours);
+});
+
+app.post("/api/v1/toursInCart", (req, res) => {
+  const ids = req.body.productIDs;
+  const cartTours = tours.filter((tour) => ids.includes(tour.id));
+
+  res.json(cartTours);
 });
 
 app.listen(port, () => {

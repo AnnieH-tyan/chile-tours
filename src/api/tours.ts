@@ -1,16 +1,28 @@
-
 export interface Tour {
-    id: number;
-    name: string;
-    location: string;
-    imgPath: string;
-    description: string;
-    price: number;
+  id: number;
+  name: string;
+  location: string;
+  imgPath: string;
+  description: string;
+  price: number;
 }
 
-export const getTours = async(): Promise<Tour[]> => {
-    const toursData = await fetch('http://localhost:3000/api/v1/tours')
-    const result = await toursData.json()
+export const getTours = async (): Promise<Tour[]> => {
+  const toursData = await fetch("http://localhost:3000/api/v1/tours");
+  const result = await toursData.json();
 
-    return result
-}
+  return result;
+};
+
+export const getToursInCart = async (productIDs: number[]) => {
+  const toursInCart = await fetch("http://localhost:3000/api/v1/toursInCart", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ productIDs }),
+  });
+  const result = await toursInCart.json();
+
+  return result;
+};
