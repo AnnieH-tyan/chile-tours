@@ -1,24 +1,19 @@
-import { Card } from "../components/Card";
-import { useCartStore } from "../store/store";
 import { getTours } from "../api/tours";
 import type { Tour } from "../api/tours";
-import {useEffect, useState} from "react";
+import { Card } from "../components/Card";
+import { useCartStore } from "../store/store";
+import { useQuery } from "@tanstack/react-query";
 
 export const TourList = () => {
   const addToCart = useCartStore((state) => state.addToCart);
+  const { data: tourList } = useQuery<Tour[], Error>({
+    queryKey: ["tours"],
+    queryFn: getTours,
+  });
 
-  const [tourList, setToursList] = useState<Tour[]>([]);
-
-  useEffect(() => {
-    const fetcData = async () => {
-      const data = await getTours()
-      setToursList(data)
-    }
-
-    fetcData()
-  }, [])
-
-  return (
+  return !tourList ? (
+    <div>Spinner</div>
+  ) : (
     <div className="flex gap-[10px] justify-center">
       {tourList.map((tour) => (
         <Card

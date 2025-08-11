@@ -1,13 +1,18 @@
 import { useNavigate, useParams } from "react-router";
 import { useCartStore } from "../store/store";
-import type {Tour} from "../api/tours";
+import { getTours, type Tour } from "../api/tours";
+import { useQuery } from "@tanstack/react-query";
 
 export const TourInfo = () => {
   const { id } = useParams();
   const navigate = useNavigate();
-  const tours = []
 
-  const tour: Tour | undefined = tours.find((tour) => tour.id === Number(id));
+  const { data: tours } = useQuery<Tour[], Error>({
+    queryKey: ["tours"],
+    queryFn: getTours,
+  });
+
+  const tour: Tour | undefined = tours?.find((tour) => tour.id === Number(id));
   const addToCart = useCartStore((state) => state.addToCart);
 
   if (!tour) return <h2>This is not the tour you're looking for</h2>;
