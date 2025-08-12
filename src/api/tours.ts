@@ -14,7 +14,7 @@ export const getTours = async (): Promise<Tour[]> => {
   return result;
 };
 
-export const getToursInCart = async (productIDs: number[]) => {
+export const getToursInCart = async (productIDs: number[]): Promise<Tour[]> => {
   const toursInCart = await fetch("http://localhost:3000/api/v1/toursInCart", {
     method: "POST",
     headers: {

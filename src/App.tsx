@@ -1,19 +1,12 @@
 import "./App.css";
 import { Link, Route, Routes } from "react-router";
-import {
-  useQuery,
-  useMutation,
-  useQueryClient,
-  QueryClient,
-  QueryClientProvider,
-} from '@tanstack/react-query'
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Cart } from "./pages/Cart";
 import { TourList } from "./pages/TourList";
 import { TourInfo } from "./pages/TourInfo";
 
-
 function App() {
-  const queryClient = new QueryClient()
+  const queryClient = new QueryClient();
 
   const navItem =
     "flex items-center h-full !text-white hover:bg-blue-700 px-4 py-2 transition-colors";
