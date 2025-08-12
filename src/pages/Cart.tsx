@@ -3,6 +3,7 @@ import { Card } from "../components/Card";
 import { useCartStore } from "../store/store";
 import { getToursInCart, type Tour } from "../api/tours";
 import { Error } from "../components/Error";
+import { CardSkeleton } from "../components/CardSkeleton";
 
 export const Cart = () => {
   const productIDs = useCartStore((state) => state.toursInCart);
@@ -17,7 +18,8 @@ export const Cart = () => {
     queryFn: () => getToursInCart(productIDs),
   });
 
-  if (isPending) return <div>Spinner</div>;
+  if (isPending)
+    return Array.from({ length: 2 }).map((_, i) => <CardSkeleton key={i} />);
 
   if (isError) return <Error />;
 

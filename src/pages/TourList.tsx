@@ -1,6 +1,7 @@
 import { getTours } from "../api/tours";
 import type { Tour } from "../api/tours";
 import { Card } from "../components/Card";
+import { CardSkeleton } from "../components/CardSkeleton";
 import { Error } from "../components/Error";
 import { useCartStore } from "../store/store";
 import { useQuery } from "@tanstack/react-query";
@@ -17,7 +18,15 @@ export const TourList = () => {
     queryFn: getTours,
   });
 
-  if (isPending) return <div>Spinner</div>;
+  if (isPending) {
+    return (
+      <div className="flex gap-[10px] justify-center">
+        {Array.from({ length: 3 }).map((_, i) => (
+          <CardSkeleton key={i} />
+        ))}
+      </div>
+    );
+  }
 
   if (isError) return <Error />;
 
